@@ -1,0 +1,9 @@
+# directories to ignore:
+.build/
+
+# ignore binaries:
+*.o
+*.a
+*.out
+*.exe
+*.run
