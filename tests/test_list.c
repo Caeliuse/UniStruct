@@ -165,13 +165,23 @@ void NodeAtTest(){
 	ListNode(int)* node = NodeAt(int, list, 0);
 	assert(node == list.head);
 
-	node = NodeAt(int, list, list.size - 1);
-	assert(node == list.tail);
-
 	node = NodeAt(int, list, 1);
 	assert(node == list.head->next);
 
+	node = NodeAt(int, list, list.size);
+	assert(node == NULL);
+
+	node = NodeAt(int, list, list.size - 1);
+	assert(node == list.tail);
+
+	node = NodeAt(int, list, list.size - 2);
+	assert(node == list.tail->prev);
+
 	DestroyList(int, &list);
+
+	list = EMPTY_LIST(int);
+	node = NodeAt(int, list, 0);
+	assert(node == NULL);
 }
 
 void CopyListTest(){

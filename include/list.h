@@ -141,45 +141,33 @@
 		--list->size;													\
 	}																	\
 																		\
-	ListNode(type)* NodeAt(type, List(type) list, usize index){			\
-		ListNode(type)* NextNode(ListNode(type)* node){					\
-			return node->next;											\
-		}																\
-																		\
-		ListNode(type)* PrevNode(ListNode(type)* node){					\
-			return node->prev;											\
-		}																\
-																		\
-		if (index >= list.size)											\
-			return NULL;												\
-																		\
-		typedef ListNode(type)*(*ShiftFunc)(ListNode(type)*);			\
-																		\
-		ShiftFunc shift;												\
-		ListNode(type)* start;											\
-																		\
-		if (index < list.size / 2){										\
-			shift = NextNode;											\
-			start = list.head;											\
-		}																\
-		else{															\
-			shift = PrevNode;											\
-			start = list.tail;											\
-			index = list.size - index - 1;								\
-		}																\
-																		\
-		while (index--)													\
-			start = shift(start);										\
-		return start;													\
-	}																	\
-																						\
-	List(type) CopyList(type, const List(type) LIST){									\
-		List(type) copy = EMPTY_LIST(type);												\
-		for (ListNode(type)* curr = LIST.head; curr != NULL; curr = curr->next)			\
-			ListAppend(type, &copy)->item = curr->item;									\
-		return copy;																	\
-	}																					\
-																						\
+	ListNode(type)* NodeAt(type, List(type) list, usize index){				\
+		ListNode(type)* IterateFront(ListNode(type)* node, usize shift){	\
+			while (shift--)													\
+				node = node->next;											\
+			return node;													\
+		}																	\
+																			\
+		ListNode(type)* IterateBack(ListNode(type)* node, usize shift){		\
+			while (shift--)													\
+				node = node->prev;											\
+			return node;													\
+		}																	\
+																			\
+		if (index >= list.size)												\
+			return NULL;													\
+		if (index < list.size / 2)											\
+			return IterateFront(list.head, index);							\
+		return IterateBack(list.tail, list.size - index - 1);				\
+	}																		\
+																				\
+	List(type) CopyList(type, const List(type) LIST){							\
+		List(type) copy = EMPTY_LIST(type);										\
+		for (ListNode(type)* curr = LIST.head; curr != NULL; curr = curr->next)	\
+			ListAppend(type, &copy)->item = curr->item;							\
+		return copy;															\
+	}																			\
+																				\
 	bool ListsEqual(type, const List(type) A, const List(type) B){	\
 		if (A.size != B.size)										\
 			return false;											\
