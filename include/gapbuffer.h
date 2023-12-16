@@ -35,6 +35,9 @@ typedef struct{
 GapBuffer CreateGb(const Array(char));
 void DestroyGb(GapBuffer*);
 
+GapBuffer CopyGb(const GapBuffer*);
+bool GbEqual(GapBuffer*, GapBuffer*);
+
 void GbInsert(GapBuffer*, const usize, const char);
 void GbErase(GapBuffer*, const usize);
 

@@ -17,6 +17,22 @@ void DestroyGb(GapBuffer* gb){
 	*gb = EMPTY_GB;
 }
 
+GapBuffer CopyGb(const GapBuffer* GB){
+	return (GapBuffer){
+		.string = CopyArray(char, GB->string),
+		.gap = GB->gap
+	};
+}
+
+bool GbEqual(GapBuffer* A, GapBuffer* B){
+	if (GbSize(A) != GbSize(B))
+		return false;
+	return ArraysEqual(char,
+		GbStringMode(A),
+		GbStringMode(B)
+	);
+}
+
 static void MoveGap(GapBuffer* gb, const usize INDEX){
 	void ShiftLeft(GapBuffer* gb, usize shift){
 		while (shift--){

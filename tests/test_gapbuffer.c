@@ -48,6 +48,32 @@ void DestroyGbTest(){
 	DestroyGb(&gb); // check for absence of SEGFAULT
 }
 
+void CopyGbTest(){
+	GapBuffer original = CreateGb(WS("Some text"));
+	GapBuffer copy = CopyGb(&original);
+
+	assert(GbSize(&original) == GbSize(&copy));
+	assert(original.string.base != copy.string.base);
+
+	const usize SIZE = GbSize(&original);
+	for (usize i = 0; i != SIZE; ++i)
+		assert(GbGet(&original, i) == GbGet(&copy, i));
+
+	DestroyGb(&original);
+	DestroyGb(&copy);
+}
+
+void GbEqualTest(){
+	GapBuffer a = CreateGb(WS("How are you?"));
+	GapBuffer b = CopyGb(&a);
+
+	assert(GbEqual(&a, &b));
+	DestroyGb(&a);
+	assert(GbEqual(&a, &b) == false);
+	DestroyGb(&b);
+	assert(GbEqual(&a, &b));
+}
+
 void GbInsertTest(){
 	Array(char) expected = WS("01234");
 	GapBuffer gb = EMPTY_GB;
@@ -305,6 +331,8 @@ void TestGb(){
 	Test("WSS", WssTest);
 	Test("CreateGb", CreateGbTest);
 	Test("DestroyGb", DestroyGbTest);
+	Test("CopyGb", CopyGbTest);
+	Test("GbEqual", GbEqualTest);
 	Test("GbInset", GbInsertTest);
 	Test("GbErase", GbEraseTest);
 	Test("GbAppend", GbAppendTest);
