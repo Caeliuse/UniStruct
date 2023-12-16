@@ -43,5 +43,16 @@ command: 'make test'
 	...
 ~~~
 
+- GapBuffer example:
+~~~c
+	#include "gapbuffer.h"
+
+	...
+	GapBuffer input = GbInput("Input something (%d lines): ", 1);
+	GbAppend(&input, '-');
+	printf("Your input but with '-': %s\n", GbCMode(&input));
+	...
+~~~
+
 ## License:
 This project is licensed under the [MIT License](LICENSE.md)
