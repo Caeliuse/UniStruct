@@ -1,5 +1,5 @@
 #include "test_list.h"
-#include "message.h"
+#include "format.h"
 #include <stdio.h>
 #include <list.h>
 #include <assert.h>
@@ -219,15 +219,15 @@ void ListsEqualTest(){
 }
 
 void TestList(){
-	printf("\'CreateList\'\ttest...");	CreateListTest();	Message("\t[passed]\n", GREEN);
-	printf("\'DestroyList\'\ttest...");	DestroyListTest();	Message("\t[passed]\n", GREEN);
-	printf("\'ListAppend\'\ttest...");	ListAppendTest();	Message("\t[passed]\n", GREEN);
-	printf("\'ListPrepend\'\ttest...");	ListPrependTest();	Message("\t[passed]\n", GREEN);
-	printf("\'ListInsert\'\ttest...");	ListInsertTest();	Message("\t[passed]\n", GREEN);
-	printf("\'ListErase\'\ttest...");	ListEraseTest();	Message("\t[passed]\n", GREEN);
-	printf("\'NodeAt\'\ttest...");		NodeAtTest();	Message("\t[passed]\n", GREEN);
-	printf("\'CopyList\'\ttest...");	CopyListTest();		Message("\t[passed]\n", GREEN);
-	printf("\'ListsEqual\'\ttest...");	ListsEqualTest();	Message("\t[passed]\n", GREEN);
+	Test("CreateList", CreateListTest);
+	Test("DestroyList", DestroyListTest);
+	Test("ListAppend", ListAppendTest);
+	Test("ListPrepend", ListPrependTest);
+	Test("ListInsert", ListInsertTest);
+	Test("ListErase", ListEraseTest);
+	Test("NodeAt", NodeAtTest);
+	Test("CopyList", CopyListTest);
+	Test("ListsEqual", ListsEqualTest);
 }
 
 DEFINE_LIST_IMPLEMENTATION(int);

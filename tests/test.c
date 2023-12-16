@@ -1,5 +1,6 @@
 #include "test_array.h"
 #include "test_list.h"
+#include "test_gapbuffer.h"
 #include "message.h"
 #include <stdio.h>
 #include <signal.h>
@@ -19,8 +20,9 @@ int main(){
 	signal(SIGSEGV, SigSegvHandler);
 	signal(SIGABRT, SigAbrtHandler);
 
-	TestArray(); putchar('\n');
-	TestList(); putchar('\n');
+	TestArray();	putchar('\n');
+	TestList();		putchar('\n');
+	TestGb();		putchar('\n');
 
 	Message("--- All tests passed ---\n\n", GREEN);
 

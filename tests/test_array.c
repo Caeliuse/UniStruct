@@ -1,5 +1,5 @@
 #include "test_array.h"
-#include "message.h"
+#include "format.h"
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
@@ -198,7 +198,7 @@ void CopyArrayTest(){
 	DestroyArray(int, &copy);
 }
 
-void ArrayEqualsTest(){
+void ArraysEqualTest(){
 	Array(int) a = AllocateArray(int, 10);
 	Array(int) b = AllocateArray(int, a.size);
 	memcpy(b.base, a.base, b.size * sizeof(int)); // 'b' is copy of array 'a'
@@ -213,14 +213,14 @@ void ArrayEqualsTest(){
 }
 
 void TestArray(){
-	printf("\'AllocateArray\'\ttest..."); 	AllocateArrayTest();	Message("\t[passed]\n", GREEN);
-	printf("\'CreateArray\'\ttest...");		CreateArrayTest();		Message("\t[passed]\n", GREEN);
-	printf("\'DestroyArray\'\ttest...");	DestroyArrayTest();		Message("\t[passed]\n", GREEN);
-	printf("\'InsertSubArray\'\ttest...");	InsertSubArrayTest();	Message("\t[passed]\n", GREEN);
-	printf("\'InsertArray\'\ttest...");		InsertArrayTest();		Message("\t[passed]\n", GREEN);
-	printf("\'EraseSubArray\'\ttest...");	EraseSubArrayTest();	Message("\t[passed]\n", GREEN);
-	printf("\'CopyArray\'\ttest...");		CopyArrayTest();		Message("\t[passed]\n", GREEN);
-	printf("\'ArrayEquals\'\ttest...");		ArrayEqualsTest();		Message("\t[passed]\n", GREEN);
+	Test("AllocateArray", AllocateArrayTest);
+	Test("CreateArray", CreateArrayTest);
+	Test("DestroyArray", DestroyArrayTest);
+	Test("InsertSubArray", InsertSubArrayTest);
+	Test("InsertArray", InsertArrayTest);
+	Test("EraseSubArray", EraseSubArrayTest);
+	Test("CopyArray", CopyArrayTest);
+	Test("ArraysEqual", ArraysEqualTest);
 }
 
 DEFINE_ARRAY_IMPLEMENTATION(int);
