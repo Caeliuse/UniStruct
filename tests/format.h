@@ -2,6 +2,7 @@
 #define FORMAT_H
 
 #include "message.h"
+#include <stdio.h>
 
 #define Test(name, f) ({			\
 	printf("\'%s\'\ttest: ", name);	\

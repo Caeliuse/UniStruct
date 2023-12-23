@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <string.h>
 
-#define TEST_DATA "tests/test.txt"
+#define TEST_DATA "tests/dummy_text.txt"
 
 void WsTest(){
 	char s[] = "Some text";

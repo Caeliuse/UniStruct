@@ -54,5 +54,18 @@ command: 'make test'
 	...
 ~~~
 
+- Map example:
+~~~c
+	#include "map.h"
+
+	DEFINE_LIST_PROTOTYPE(int, char);
+	DEFINE_MAP_IMPLEMENTATION(int, char, YourKeysEqualFunc, YourHashFunc);
+	
+	...
+	Map(int, char) map = EMPTY_MAP(int, char);
+	MapAdd(int, char, &map, 2020)->value = 'f';
+	...
+~~~
+
 ## License:
 This project is licensed under the [MIT License](LICENSE.md)

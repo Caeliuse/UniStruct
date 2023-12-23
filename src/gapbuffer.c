@@ -52,7 +52,7 @@ static void MoveGap(GapBuffer* gb, const usize INDEX){
 		}
 	}
 
-	if (gb->gap.size == 0)
+	if (gb->gap.size == 0 || gb->gap.begin == INDEX)
 		gb->gap.begin = INDEX;
 	else if (gb->gap.begin < INDEX)
 		ShiftRight(gb, INDEX - gb->gap.begin);
